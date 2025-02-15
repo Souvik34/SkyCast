@@ -2,12 +2,12 @@ import "./App.css";
 import WeatherApp from "./Component/WeatherApp";
 import Navbar from "./Component/Navbar";
 import Console from "./Component/Console";
-// import Bgr from "/Background.png";
+import Bgr from "./assets/Background.png";
 
 function App() {
   return (
     <div className="font-nunito" 
-    // style={{ backgroundImage: `url(${Bgr})` }}
+    style={{ backgroundImage: `url(${Bgr})` }}
     >
         <Navbar />
         <WeatherApp />

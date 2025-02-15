@@ -1,9 +1,17 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
+import { useEffect } from 'react'
 
-const Console = () => {
-  return (
-    <div>Console</div>
-  )
+function Console() {
+    useEffect(() => {
+        console.log('Hello from Console')
+    }, [])
+
+    return (
+        <div>
+            Console
+        </div>
+    )
 }
 
 export default Console
