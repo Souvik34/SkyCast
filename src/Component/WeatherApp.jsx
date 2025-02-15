@@ -1,90 +1,101 @@
-/* eslint-disable no-unused-vars */
-"use-client"
-import React from 'react'
-import {useQuery} from 'react-query'    
-import {v4 as uuidv4} from 'uuid'
-import {useState, useEffect} from 'react'
-import { ThermometerSimple, CloudRain, Wind, Drop, Sun } from '@phosphor-icons/react'
+"use client";
+import { useQuery } from "react-query";
+import { v4 as uuidv4 } from "uuid";
+import { useState, useEffect } from "react";
+import Bgimage from "../assets/bg.jpeg";
+import {
+  ThermometerSimple,
+  CloudRain,
+  Wind,
+  Drop,
+  Sun,
+} from "@phosphor-icons/react";
 
 function WeatherApp() {
-    const[location, setLocation] = useState('');
-    const[position, setPosition] = useState({latitude: 0, longitude: 0});
-    const[isCurrentLocationUsed, setIsCurrentLocationUsed] = useState(false);
+  const [location, setLocation] = useState("");
+  const [position, setPosition] = useState({ latitude: null, longitude: null });
+  const [isCurrentLocationUsed, setIsCurrentLocationUsed] = useState(false);
 
-    useEffect(()=>{
-        if("geolocation" in navigator){
-            navigator.geolocation.getCurrentPosition(function(position){
-                setPosition({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                })
-            })
-        }
-        else{
-            console.log("Geolocation Not Available")
-        }
-    },[]);
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        setPosition({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      });
+    } else {
+      console.log("Geolocation is not available in your browser.");
+    }
+  }, []);
 
+  useEffect(() => {
+    if (isCurrentLocationUsed) {
+      setLocation(`${position.latitude},${position.longitude}`);
 
-    useEffect(()=>{
-        if(isCurrentLocationUsed){
-            setLocation(`${position.latitude}, ${position.longitude}`);
-            const timeout = setTimeout(()=>{
-                refetch();
+      const timeout = setTimeout(() => {
+        refetch();
 
-                setIsCurrentLocationUsed(false);
-            }, 100);
+        setIsCurrentLocationUsed(false);
+      }, 100);
 
-            return () => clearTimeout(timeout);
-        }
-    }, [isCurrentLocationUsed]);
+      return () => clearTimeout(timeout);
+    }
+  }, [isCurrentLocationUsed]);
 
-    const fetchData = useQuery(
-        [],
-        ()=> {
-            return fetch(
-                `https://api.weatherapi.com/v1/forecast.json?key=${
-                  import.meta.env.VITE_WEATHER_API
-                }&q=${location}&days=3&aqi=yes&alerts=yes`
-              ).then((response) => response.json());
-            },
-            {
-              enabled: false,
-            }
-          );
+  const fetchData = useQuery(
+    [],
+    () => {
+      return fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=${
+          import.meta.env.VITE_WEATHER_API
+        }&q=${location}&days=3&aqi=yes&alerts=yes`
+      ).then((response) => response.json());
+    },
+    {
+      enabled: false,
+    }
+  );
 
-          const { data, isLoading, refetch } = fetchData;
+  const { data, isLoading, refetch } = fetchData;
 
-          const handleLocationChange = (e) => {
-            setLocation(e.target.value);
-          };
+  const handeLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
 
-          if(isLoading) 
-            return (
-            <div className='grid place-items-center'>
-                <span className='loading laoding-spinner text-center w-3/12 mt-20'></span>
+  if (isLoading) {
+    return (
+      <div className="grid place-items-center">
+        <span className="loading loading-spinner text-center w-3/12 mt-20"></span>
+      </div>
+    );
+  }
 
-            </div>
-            );
-    
-
-        if(data && data.error){
-            return (
-                <div className='hero min-h-screen'>
-                    <div className='hero-content text-center'>
-                        <div>
-                            <p className='text-2xl font-bold text-slate-200'>
-                                Welcome to  <span className='text-sky-400'> SkyCast </span>{""}
-                            </p>
-                            <p className='mb-4'>Choose a location</p>
-                            <input className='input text-2xl input-bordered input-primary w-full max-w-xs'
-                             type="text"
-                             placeholder='Search Location'
-                             value={location}
-                             onChange={handleLocationChange} />
-                             <button className='btn btn-outline bg-slate-700 text-white m-3' 
-                             onClick={()=> refetch()}> SEARCH</button>
-                       <button
+  if (data && data.error) {
+    return (
+      <div className="hero min-h-screen">
+        <div className="hero-content text-center">
+          <div>
+          <p className="text-2xl font-bold text-slate-200">
+              Welcome to <span className="text-sky-custom">TypeWeather</span>{" "}
+            </p>
+            <p className="mb-4">
+              Choose a location to see the weather forecast
+            </p>
+            <input
+              className="input text-2xl input-bordered input-primary w-full max-w-xs"
+              type="text"
+              placeholder="Search location"
+              value={location}
+              onChange={handeLocationChange}
+            />
+            <button
+              className="btn btn-outline bg-slate-700 text-white m-3"
+              onClick={() => refetch()}
+            >
+              SEARCH
+            </button>
+            <button
               className="btn btn-outline bg-green-500 text-white m-3"
               onClick={() => {
                 setIsCurrentLocationUsed(true);
@@ -113,7 +124,7 @@ function WeatherApp() {
             <div>
               <div
                 className="card text-white text-xl bg-opacity-60 p-6 shadow-xl"
-                // style={{ backgroundImage: `url(${Bgimage})` }}
+                style={{ backgroundImage: `url(${Bgimage})` }}
               >
                 <div>
                   <h1>
@@ -234,7 +245,7 @@ function WeatherApp() {
               type="text"
               placeholder="Search location"
               value={location}
-              onChange={handleLocationChange}
+              onChange={handeLocationChange}
             />
             <button
               className="btn btn-outline bg-slate-700 text-white m-3"
