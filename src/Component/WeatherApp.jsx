@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { v4 as uuidv4 } from "uuid";
@@ -119,7 +118,7 @@ function WeatherApp() {
     return (
       <>
         <div className="hero min-h-screen">
-          <div className="hero-content">
+<div className="hero-content w-full max-w-full overflow-hidden px-4">
             <div>
               <div
                 className="card text-white text-xl bg-opacity-60 p-6 shadow-xl"
