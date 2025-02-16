@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { v4 as uuidv4 } from "uuid";
