@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
 import Bgimage from "../assets/bg.jpeg";
+
 import {
   ThermometerSimple,
   CloudRain,
@@ -48,8 +49,7 @@ function WeatherApp() {
     [],
     () => {
       return fetch(
-        `https://api.weatherapi.com/v1/forecast.json?key=${
-          import.meta.env.VITE_WEATHER_API
+        `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_WEATHER_API
         }&q=${location}&days=3&aqi=yes&alerts=yes`
       ).then((response) => response.json());
     },
@@ -83,7 +83,7 @@ function WeatherApp() {
       <div className="hero min-h-screen">
         <div className="hero-content text-center">
           <div>
-          <p className="text-5xl mb-6 font-bold text-slate-200">
+            <p className="text-5xl mb-6 font-bold text-slate-200">
               Welcome to <span className="text-sky-custom">SkyCast</span>
             </p>
             <p className="mb-4 text-2xl">
@@ -118,11 +118,11 @@ function WeatherApp() {
               MY LOCATION
             </button>
             {errorMessage && (
-              <div className="text-red-500 mt-2">
+              <div className="text-red-500 text-xl mt-2">
                 {errorMessage}
               </div>
             )}
-           
+
           </div>
         </div>
       </div>
@@ -140,10 +140,13 @@ function WeatherApp() {
                 style={{ backgroundImage: `url(${Bgimage})` }}
               >
                 <div>
-                  <h1>
-                    {data.location.name} / {data.location.country}
+                  <h1 className="text-3xl">
+                    {data.location.name},<span className="ml-4"></span>{data.location.country}
                   </h1>
-                  <h1>{data.location.localtime}</h1>
+                  <h1 className="mt-3">
+                   {data.location.localtime.split(" ")[0]} <br /> 
+                   Last updated at {data.location.localtime.split(" ")[1]}
+                  </h1>
                 </div>
                 <div>
                   <div className="flex mt-36">
