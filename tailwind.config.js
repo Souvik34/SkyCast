@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "sky-custom": "#8FB2F5",
+        "sky-custom": "#296ef2",
       },
       fontFamily: {
         'nunito': ['Nunito', 'sans-serif'],

@@ -5,9 +5,16 @@
   text-align: center;
 }
 
+body {
+  background: linear-gradient(to bottom, #000000, #434343);
+  color: white; 
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  /* padding: 1.5em; */
   will-change: filter;
   transition: filter 300ms;
 }

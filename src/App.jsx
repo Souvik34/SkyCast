@@ -5,7 +5,7 @@ import Console from "./Component/Console";
 
 function App() {
   return (
-    <div className="font-nunito" 
+    <div className="font-DM-Sans" 
     >
         <Navbar />
         <WeatherApp />
