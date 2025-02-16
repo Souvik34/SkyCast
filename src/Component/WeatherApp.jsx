@@ -49,7 +49,9 @@ function WeatherApp() {
     [],
     () => {
       return fetch(
-        `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_WEATHER_API
+       `https://api.weatherapi.com/v1/forecast.json?key=${
+          import.meta.env.VITE_WEATHER_API
+        
         }&q=${location}&days=3&aqi=yes&alerts=yes`
       ).then((response) => response.json());
     },
