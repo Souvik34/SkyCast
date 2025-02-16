@@ -12,14 +12,13 @@ function Navbar() {
 
 
     return (
-        <div className="navbar">
-            <div className="flex-1 flex items-center justify-center">
-                <button onClick={handleClick} className='ml-2 text-7xl flex mt-5'>
+        
+            <div className="navabr flex-1 flex items-center justify-center">
+                <button onClick={handleClick} className='ml-2 text-3xl md:text-7xl flex items-center mt-5'>
                     <img src={logo} alt="Logo" className='mr-4' style={{height: '3rem',width: '4.5rem', marginTop: '0.5rem'}} /> 
                     SkyCast
                 </button>
             </div>
-        </div>
     
     );
 }

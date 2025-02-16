@@ -15,6 +15,7 @@ function WeatherApp() {
   const [location, setLocation] = useState("");
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [isCurrentLocationUsed, setIsCurrentLocationUsed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -63,10 +64,16 @@ function WeatherApp() {
     setLocation(event.target.value);
   };
 
+  useEffect(() => {
+    if (data && data.error) {
+      setErrorMessage("No specific location found. Please try again.");
+    }
+  }, [data]);
+
   if (isLoading) {
     return (
       <div className="grid place-items-center">
-        <span className="loading loading-spinner text-center w-3/12 mt-20"></span>
+        <span className="loading loading-spinner text-center mt-20"></span>
       </div>
     );
   }
@@ -76,14 +83,14 @@ function WeatherApp() {
       <div className="hero min-h-screen">
         <div className="hero-content text-center">
           <div>
-          <p className="text-2xl font-bold text-slate-200">
-              Welcome to <span className="text-sky-custom">TypeWeather</span>{" "}
+          <p className="text-5xl mb-6 font-bold text-slate-200">
+              Welcome to <span className="text-sky-custom">SkyCast</span>
             </p>
-            <p className="mb-4">
+            <p className="mb-4 text-2xl">
               Choose a location to see the weather forecast
             </p>
             <input
-              className="input text-2xl input-bordered input-primary w-full max-w-xs"
+              className="input text-xl input-bordered input-primary w-full max-w-xs"
               type="text"
               placeholder="Search location"
               value={location}
@@ -91,7 +98,14 @@ function WeatherApp() {
             />
             <button
               className="btn btn-outline bg-slate-700 text-white m-3"
-              onClick={() => refetch()}
+              onClick={() => {
+                if (location.trim() === "") {
+                  setErrorMessage("Please enter a valid location.");
+                } else {
+                  setErrorMessage("");
+                  refetch();
+                }
+              }}
             >
               SEARCH
             </button>
@@ -103,13 +117,12 @@ function WeatherApp() {
             >
               MY LOCATION
             </button>
-            <div className="card text-white text-xl mx-auto mt-10">
-              <p className="text-white text-3xl">An Error Occurred</p>
-              <hr />
-              <p className="text-white text-3xl">
-                Cause : {data.error.message}
-              </p>
-            </div>
+            {errorMessage && (
+              <div className="text-red-500 mt-2">
+                {errorMessage}
+              </div>
+            )}
+           
           </div>
         </div>
       </div>
@@ -234,10 +247,10 @@ function WeatherApp() {
       <div className="hero min-h-screen">
         <div className="hero-content text-center">
           <div>
-            <p className="text-2xl font-bold text-slate-200">
-              Welcome to <span className="text-sky-custom">TypeWeather</span>{" "}
+            <p className="text-5xl mb-6 font-bold text-slate-200">
+              Welcome to <span className="text-sky-custom">SkyCast</span>
             </p>
-            <p className="mb-4">
+            <p className="mb-4 text-2xl">
               Choose a location to see the weather forecast
             </p>
             <input
