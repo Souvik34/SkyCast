@@ -1,5 +1,5 @@
 "use client";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
 import Bgimage from "../assets/bg.jpeg";
@@ -33,35 +33,28 @@ function WeatherApp() {
   useEffect(() => {
     if (isCurrentLocationUsed) {
       setLocation(`${position.latitude},${position.longitude}`);
-
       const timeout = setTimeout(() => {
         refetch();
-
         setIsCurrentLocationUsed(false);
       }, 100);
-
       return () => clearTimeout(timeout);
     }
-  }, [isCurrentLocationUsed]);
+  }, [isCurrentLocationUsed, position]);
 
-  const fetchData = useQuery(
-    [],
-    () => {
-      return fetch(
-       `https://api.weatherapi.com/v1/forecast.json?key=${
-          import.meta.env.VITE_WEATHER_API
-        
-        }&q=${location}&days=3&aqi=yes&alerts=yes`
-      ).then((response) => response.json());
-    },
-    {
-      enabled: false,
-    }
-  );
+  const fetchWeather = async () => {
+    const response = await fetch(
+      `https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_WEATHER_API}&q=${location}&days=3&aqi=yes&alerts=yes`
+    );
+    return response.json();
+  };
 
-  const { data, isLoading, refetch } = fetchData;
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["weather", location],
+    queryFn: fetchWeather,
+    enabled: false,
+  });
 
-  const handeLocationChange = (event) => {
+  const handleLocationChange = (event) => {
     setLocation(event.target.value);
   };
 
@@ -87,15 +80,13 @@ function WeatherApp() {
             <p className="text-5xl mb-6 font-bold text-slate-200">
               Welcome to <span className="text-sky-custom">SkyCast</span>
             </p>
-            <p className="mb-4 text-2xl">
-              Choose a location to see the weather forecast
-            </p>
+            <p className="mb-4 text-2xl">Choose a location to see the weather forecast</p>
             <input
               className="input text-xl input-bordered input-primary w-full max-w-xs"
               type="text"
               placeholder="Search location"
               value={location}
-              onChange={handeLocationChange}
+              onChange={handleLocationChange}
             />
             <button
               className="btn btn-outline bg-slate-700 text-white m-3"
@@ -112,18 +103,11 @@ function WeatherApp() {
             </button>
             <button
               className="btn btn-outline bg-green-500 text-white m-3"
-              onClick={() => {
-                setIsCurrentLocationUsed(true);
-              }}
+              onClick={() => setIsCurrentLocationUsed(true)}
             >
               MY LOCATION
             </button>
-            {errorMessage && (
-              <div className="text-red-500 text-xl mt-2">
-                {errorMessage}
-              </div>
-            )}
-
+            {errorMessage && <div className="text-red-500 text-xl mt-2">{errorMessage}</div>}
           </div>
         </div>
       </div>
@@ -262,7 +246,7 @@ function WeatherApp() {
               type="text"
               placeholder="Search location"
               value={location}
-              onChange={handeLocationChange}
+              onChange={handleLocationChange}
             />
             <button
               className="btn btn-outline bg-slate-700 text-white m-3"
