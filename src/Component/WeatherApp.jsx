@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
 import Bgimage from "../assets/bg.jpeg";
-
 import {
   ThermometerSimple,
   CloudRain,

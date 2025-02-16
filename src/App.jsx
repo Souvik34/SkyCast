@@ -5,11 +5,13 @@ import Console from "./Component/Console";
 
 function App() {
   return (
+    <>
     <div className="font-DM-Sans" >
         <Navbar />
         <WeatherApp />
         <Console />
       </div>
+      </>
   );
 }
 
