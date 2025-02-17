@@ -118,25 +118,25 @@ function WeatherApp() {
     return (
       <>
         <div className="hero min-h-screen">
-<div className="hero-content w-full max-w-full overflow-hidden px-4">
+          <div className="lg:hero-content w-full max-w-full overflow-hidden mt-10  md:px-5  lg:px-10">
             <div>
               <div
-                className="card text-white text-xl bg-opacity-60 p-6 shadow-xl"
+                className="lg:card text-white text-xl bg-opacity-60 p-6 mx-4 shadow-xl md:mx-0 rounded-md md:h-auto"
                 style={{ backgroundImage: `url(${Bgimage})` }}
               >
                 <div>
-                  <h1 className="text-3xl">
+                  <h1 className="lg:text-3xl md:text-2xl text-center">
                     {data.location.name},<span className="ml-4"></span>{data.location.country}
                   </h1>
                   <h1 className="mt-3">
-                   {data.location.localtime.split(" ")[0]} <br /> 
-                   Last updated at {data.location.localtime.split(" ")[1]}
+                    {data.location.localtime.split(" ")[0]} <br />
+                    Last updated at {data.location.localtime.split(" ")[1]}
                   </h1>
                 </div>
                 <div>
                   <div className="flex mt-36">
-                    <div className="text-left w-11/12 ">
-                      <h1 className="text-6xl mt-6">{data.current.temp_c}°c</h1>
+                    <div className="text-left w-11/12">
+                      <h1 className="lg:text-6xl mt-6 md:text-2xl">{data.current.temp_c}°c</h1>
                       <h1>{data.current.condition.text}</h1>
                     </div>
                     <img
@@ -150,7 +150,7 @@ function WeatherApp() {
                 </div>
               </div>
 
-              <div className="card text-white text-xl mx-auto bg-base-300 mt-5 shadow-xl">
+              <div className="lg:card text-white text-xl mx-4 bg-base-300 mt-5 shadow-xl md:mx-auto rounded-md">
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -201,25 +201,27 @@ function WeatherApp() {
                 </div>
               </div>
 
-              <div className="card text-white text-xl mx-auto mt-5 shadow-xl bg-base-300 text-center">
+              <div className="lg:card text-white text-xl mx-4 mt-5 shadow-xl bg-base-300 text-center overflow-x-auto md:mx-auto rounded-md">
                 {data && (
-                  <div className="carousel rounded-box">
-                    {data.forecast.forecastday.map((day) => (
-                      <div key={uuidv4()}>
-                        <div className="shadow-xl">
-                          <h2 className="p-2"> {day.date} </h2>
-                          <img
-                            className="mx-10 m-2"
-                            src={day.day.condition.icon}
-                            alt={day.day.condition.text}
-                          />
-                          <div className="card m-2">
-                            <p className="p-2 "> {day.day.maxtemp_c} °C</p>
-                            <p className="p-2 "> {day.day.mintemp_c} °C</p>
+                  <div className="carousel rounded-box overflow-x-auto">
+                    <div className="flex md:flex-wrap">
+                      {data.forecast.forecastday.map((day) => (
+                        <div key={uuidv4()} className="flex-shrink-0 w-1/2 md:w-auto">
+                          <div className="shadow-xl">
+                            <h2 className="p-2"> {day.date} </h2>
+                            <img
+                              className="mx-10 m-2"
+                              src={day.day.condition.icon}
+                              alt={day.day.condition.text}
+                            />
+                            <div className="card m-2">
+                              <p className="p-2 "> {day.day.maxtemp_c} °C</p>
+                              <p className="p-2 "> {day.day.mintemp_c} °C</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
