@@ -225,6 +225,18 @@ function WeatherApp() {
                   </div>
                 )}
               </div>
+              {data && (
+  <button
+    className="btn btn-outline bg-green-500 text-white m-3 absolute top-0 right-0 mt-4 mr-4 hidden md:block"
+    onClick={() => {
+      setLocation("");
+      setErrorMessage("");
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }}
+  >
+    GO BACK
+  </button>
+)}
             </div>
           </div>
         </div>
