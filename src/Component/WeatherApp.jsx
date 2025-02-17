@@ -231,7 +231,7 @@ function WeatherApp() {
     onClick={() => {
       setLocation("");
       setErrorMessage("");
-      window.scrollTo(0, 0); // Scroll to the top of the page
+      window.scrollTo(0, 0); 
     }}
   >
     GO BACK
