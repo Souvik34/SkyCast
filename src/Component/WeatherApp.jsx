@@ -92,7 +92,7 @@ function WeatherApp() {
               onChange={handleLocationChange}
             />
             <button
-              className="btn btn-outline bg-zinc-800 text-white m-3 mt-6"
+              className="btn btn-outline bg-slate-700 text-white m-3 "
               onClick={() => {
                 if (location.trim() === "") {
                   setErrorMessage("Please enter a valid location!");
@@ -124,8 +124,8 @@ function WeatherApp() {
           <div className="lg:hero-content w-full max-w-full overflow-hidden mt-10  md:px-5  lg:px-10">
             <div>
               <div
-                className="lg:card text-white text-xl bg-opacity-60 backdrop-filter backdrop-blur-lg border-4 border-blue-300 p-6 mx-4 shadow-xl md:mx-0 rounded-md md:h-auto  "
-                style={{ backgroundImage: ' linear-gradient(to left top, #f994e2, #d177c7, #a95aac, #834092, #5d2678, #461e68, #301557, #1a0d46, #120e39, #0f0b2b, #0a071d, #02020d)' }}
+                className="lg:card text-white text-xl bg-opacity-60 p-6 mx-4 shadow-xl md:mx-0 rounded-md md:h-auto border-2 border-zinc-800"
+                style={{ backgroundImage: 'linear-gradient(to left top, #f994e2, #d177c7, #a95aac, #834092, #5d2678, #461e68, #301557, #1a0d46, #120e39, #0f0b2b, #0a071d, #02020d)' }}
               >
                 <div>
                   <h1 className="lg:text-3xl md:text-2xl text-center">
@@ -153,8 +153,8 @@ function WeatherApp() {
                 </div>
               </div>
               <div
-                className="lg:card text-white text-xl mx-4 mt-5 shadow-xl md:mx-auto rounded-md bg-opacity-70 backdrop-filter backdrop-blur-lg border-4 border-zinc-500"
-                style={{ backgroundImage: 'linear-gradient(to bottom, #040003, #0f0a10, #161219, #1b1921, #1e1f2a, #1f232e, #202832, #212c36, #232e35, #263134, #2a3234, #2f3434)' }}
+                className="lg:card text-white text-xl mx-4 mt-5 shadow-xl md:mx-auto rounded-md border-2 border-zinc-800"
+                style={{ backgroundImage: 'linear-gradient(to bottom, #030203, #0a010c, #0f0013, #110019, #12001f, #110220, #100321, #0f0522, #0f081e, #0f0b1a, #0f0d15, #0f0f0f)' }}
               >
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
@@ -259,24 +259,17 @@ function WeatherApp() {
             </p>
             <p className="mb-4 text-2xl">Choose a location to see the weather forecast &#x26C5;</p>
             <input
-              className="input text-2xl  input-bordered input-primary w-full max-w-xs"
+              className="input text-2xl input-bordered input-primary w-full max-w-xs"
               type="text"
               placeholder="Search location"
               value={location}
               onChange={handleLocationChange}
             />
             <button
-              className="btn btn-outline bg-zinc-800 text-white m-3"
-              onClick={() => {
-                if (location.trim() === "") {
-                  setErrorMessage("Please enter a valid location!");
-                } else {
-                  setErrorMessage("");
-                  refetch();
-                }
-              }}
+              className="btn btn-outline bg-slate-700 text-white m-3"
+              onClick={() => refetch()}
             >
-              SEARCH <MagnifyingGlass size={20} className="ml-2" />
+              <MagnifyingGlass size={20} className="ml-2" />
             </button>
             <button
               className="btn btn-outline bg-green-500 text-white m-3"
