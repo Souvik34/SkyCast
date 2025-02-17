@@ -120,6 +120,8 @@ function WeatherApp() {
   if (data) {
     return (
       <>
+       
+        
         <div className="hero min-h-screen">
           <div className="lg:hero-content w-full max-w-full overflow-hidden mt-10  md:px-5  lg:px-10">
             <div>
@@ -153,7 +155,7 @@ function WeatherApp() {
                 </div>
               </div>
               <div
-                className="lg:card text-white text-xl mx-4 mt-5 shadow-xl md:mx-auto rounded-md border-2 border-zinc-800"
+                className="lg:card text-white text-xl mx-4 mt-5 shadow-xl md:mx-auto rounded-md border-4 border-white"
                 style={{ backgroundImage: 'linear-gradient(to bottom, #030203, #0a010c, #0f0013, #110019, #12001f, #110220, #100321, #0f0522, #0f081e, #0f0b1a, #0f0d15, #0f0f0f)' }}
               >
                 <div className="p-5 flex">
@@ -166,7 +168,7 @@ function WeatherApp() {
                     {data.current.feelslike_c}°C
                   </p>
                 </div>
-                {/* <hr /> */}
+                <hr />
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -175,7 +177,7 @@ function WeatherApp() {
                   </p>
                   <p className="text-right w-1/2">{data.current.vis_km}%</p>
                 </div>
-                {/* <hr /> */}
+                <hr />
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -186,7 +188,7 @@ function WeatherApp() {
                     {data.current.wind_kph} km/h
                   </p>
                 </div>
-                {/* <hr /> */}
+                <hr />
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -195,7 +197,7 @@ function WeatherApp() {
                   </p>
                   <p className="text-right w-1/2">{data.current.humidity}%</p>
                 </div>
-                {/* <hr /> */}
+                <hr />
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}

@@ -16,7 +16,9 @@ body {
   color: white; 
   margin: 0;
   font-family: 'DM Sans', sans-serif;
+  overflow: auto;
 }
+
 
 .card {
   padding: 2em;
