@@ -12,34 +12,10 @@
 }
 
 body {
-  background: linear-gradient(to bottom, #000000, #434343);
+  background-image: linear-gradient(to bottom, #030b17, #000c12, #000a0a, #000703, #030401);
   color: white; 
   margin: 0;
   font-family: 'DM Sans', sans-serif;
-}
-
-
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
 
 .card {

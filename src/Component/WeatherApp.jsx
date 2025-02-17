@@ -3,13 +3,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
-import Bgimage from "../assets/bg.jpeg";
+// import Bgimage from "../assets/bg.jpeg";
 import {
   ThermometerSimple,
   CloudRain,
   Wind,
   Drop,
   Sun,
+  MapPin,
+  MagnifyingGlass,
 } from "@phosphor-icons/react";
 
 function WeatherApp() {
@@ -61,7 +63,7 @@ function WeatherApp() {
 
   useEffect(() => {
     if (data && data.error) {
-      setErrorMessage("No specific location found. Please try again.");
+      setErrorMessage("No specific location found! Please try again.");
     }
   }, [data]);
 
@@ -81,7 +83,7 @@ function WeatherApp() {
             <p className="text-5xl mb-6 font-bold text-slate-200">
               Welcome to <span className="text-sky-custom">SkyCast</span>
             </p>
-            <p className="mb-4 text-2xl">Choose a location to see the weather forecast</p>
+            <p className="mb-4 text-2xl">Choose a location to see the weather forecast &#x26C5;</p>
             <input
               className="input text-xl input-bordered input-primary w-full max-w-xs"
               type="text"
@@ -90,23 +92,23 @@ function WeatherApp() {
               onChange={handleLocationChange}
             />
             <button
-              className="btn btn-outline bg-slate-700 text-white m-3"
+              className="btn btn-outline bg-zinc-800 text-white m-3 mt-6"
               onClick={() => {
                 if (location.trim() === "") {
-                  setErrorMessage("Please enter a valid location.");
+                  setErrorMessage("Please enter a valid location!");
                 } else {
                   setErrorMessage("");
                   refetch();
                 }
               }}
             >
-              SEARCH
+              <MagnifyingGlass size={20} className="ml-2" />
             </button>
             <button
               className="btn btn-outline bg-green-500 text-white m-3"
               onClick={() => setIsCurrentLocationUsed(true)}
             >
-              MY LOCATION
+              Check weather at your Location<MapPin size={20} className="ml-2" />
             </button>
             {errorMessage && <div className="text-red-500 text-xl mt-2">{errorMessage}</div>}
           </div>
@@ -122,8 +124,8 @@ function WeatherApp() {
           <div className="lg:hero-content w-full max-w-full overflow-hidden mt-10  md:px-5  lg:px-10">
             <div>
               <div
-                className="lg:card text-white text-xl bg-opacity-60 p-6 mx-4 shadow-xl md:mx-0 rounded-md md:h-auto"
-                style={{ backgroundImage: `url(${Bgimage})` }}
+                className="lg:card text-white text-xl bg-opacity-60 backdrop-filter backdrop-blur-lg border-4 border-blue-300 p-6 mx-4 shadow-xl md:mx-0 rounded-md md:h-auto  "
+                style={{ backgroundImage: ' linear-gradient(to left top, #f994e2, #d177c7, #a95aac, #834092, #5d2678, #461e68, #301557, #1a0d46, #120e39, #0f0b2b, #0a071d, #02020d)' }}
               >
                 <div>
                   <h1 className="lg:text-3xl md:text-2xl text-center">
@@ -150,8 +152,10 @@ function WeatherApp() {
                   </div>
                 </div>
               </div>
-
-              <div className="lg:card text-white text-xl mx-4 bg-base-300 mt-5 shadow-xl md:mx-auto rounded-md">
+              <div
+                className="lg:card text-white text-xl mx-4 mt-5 shadow-xl md:mx-auto rounded-md bg-opacity-70 backdrop-filter backdrop-blur-lg border-4 border-zinc-500"
+                style={{ backgroundImage: 'linear-gradient(to bottom, #040003, #0f0a10, #161219, #1b1921, #1e1f2a, #1f232e, #202832, #212c36, #232e35, #263134, #2a3234, #2f3434)' }}
+              >
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -162,7 +166,7 @@ function WeatherApp() {
                     {data.current.feelslike_c}°C
                   </p>
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -171,7 +175,7 @@ function WeatherApp() {
                   </p>
                   <p className="text-right w-1/2">{data.current.vis_km}%</p>
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -182,7 +186,7 @@ function WeatherApp() {
                     {data.current.wind_kph} km/h
                   </p>
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -191,7 +195,7 @@ function WeatherApp() {
                   </p>
                   <p className="text-right w-1/2">{data.current.humidity}%</p>
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div className="p-5 flex">
                   <p className="text-left w-1/2 flex">
                     {" "}
@@ -202,7 +206,7 @@ function WeatherApp() {
                 </div>
               </div>
 
-              <div className="lg:card text-white text-xl mx-4 mt-5 shadow-xl bg-base-300 text-center overflow-x-auto md:mx-auto rounded-md">
+              <div className="lg:card text-white text-xl mx-4 mt-5 shadow-xl  text-center overflow-x-auto md:mx-auto rounded-md" style={{backgroundImage: 'linear-gradient(to top, #0a0307, #0a0309, #0a030c, #08040f, #060511, #050515, #030518, #00061b, #000520, #000424, #000229, #01002d)'}}>
                 {data && (
                   <div className="carousel rounded-box overflow-x-auto">
                     <div className="flex md:flex-wrap">
@@ -227,17 +231,17 @@ function WeatherApp() {
                 )}
               </div>
               {data && (
-  <button
-    className="btn btn-outline bg-green-500 text-white m-3 absolute top-0 right-0 mt-4 mr-4 hidden md:block"
-    onClick={() => {
-      setLocation("");
-      setErrorMessage("");
-      window.scrollTo(0, 0); 
-    }}
-  >
-    GO BACK
-  </button>
-)}
+                <button
+                  className="btn btn-outline bg-green-500 text-white m-3 absolute top-0 right-0 mt-4 mr-4 hidden md:block"
+                  onClick={() => {
+                    setLocation("");
+                    setErrorMessage("");
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  GO BACK
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -253,21 +257,26 @@ function WeatherApp() {
             <p className="text-5xl mb-6 font-bold text-slate-200">
               Welcome to <span className="text-sky-custom">SkyCast</span>
             </p>
-            <p className="mb-4 text-2xl">
-              Choose a location to see the weather forecast
-            </p>
+            <p className="mb-4 text-2xl">Choose a location to see the weather forecast &#x26C5;</p>
             <input
-              className="input text-2xl input-bordered input-primary w-full max-w-xs"
+              className="input text-2xl  input-bordered input-primary w-full max-w-xs"
               type="text"
               placeholder="Search location"
               value={location}
               onChange={handleLocationChange}
             />
             <button
-              className="btn btn-outline bg-slate-700 text-white m-3"
-              onClick={() => refetch()}
+              className="btn btn-outline bg-zinc-800 text-white m-3"
+              onClick={() => {
+                if (location.trim() === "") {
+                  setErrorMessage("Please enter a valid location!");
+                } else {
+                  setErrorMessage("");
+                  refetch();
+                }
+              }}
             >
-              SEARCH
+              SEARCH <MagnifyingGlass size={20} className="ml-2" />
             </button>
             <button
               className="btn btn-outline bg-green-500 text-white m-3"
@@ -275,7 +284,7 @@ function WeatherApp() {
                 setIsCurrentLocationUsed(true);
               }}
             >
-              MY LOCATION
+              Check weather at your Location<MapPin size={20} className="ml-2" />
             </button>
           </div>
         </div>
