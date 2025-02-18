@@ -56,8 +56,11 @@ skycast/
 ```
 
 ### Screenshots
+1. For desktop devices
 ![For Desktop Devices](./public/Screenshot%202025-02-18%20153740.png)
 ![Working on dekstop devices](./public/localhost_5173_.png)
+
+2. For mobile devies
 ![For mobile devices](./public/localhost_5173_(iPhone%20SE).png)
 ![Working on mobile devices](./public/localhost_5173_(iPhone%20XR).png)
 ![Error Hnadling](./public/localhost_5173_(iPhone%20SE)%20(1).png)
