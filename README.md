@@ -52,3 +52,13 @@ skycast/
 ├── package.json
 ├── tailwind.config.js
 └── vite.config.js
+
+```
+
+### Screenshots
+![For Desktop Devices](./public/Screenshot%202025-02-18%20153740.png)
+![Working on dekstop devices](./public/localhost_5173_.png)
+![For mobile devices](./public/localhost_5173_(iPhone%20SE).png)
+![Working on mobile devices](./public/localhost_5173_(iPhone%20XR).png)
+![Error Hnadling](./public/localhost_5173_(iPhone%20SE)%20(1).png)
+
